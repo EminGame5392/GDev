@@ -1,0 +1,1175 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Визитная карточка fullstack разработчика GDev">
+    <meta name="keywords" content="fullstack разработчик, GDec, GorTEx Dev, GorTEx">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>GDev | Эмин Аскеров - Разработчик</title>
+    <link rel="icon" href="/img/gdev.jpg" type="img/jpg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-color: #000;
+            --text-color: #0f0;
+            --primary: #f0f;
+            --secondary: #0ff;
+            --accent: #ff0;
+            --font-main: 'Comic Sans MS', 'Wingdings', cursive;
+            --font-heading: 'Papyrus', 'Chiller', fantasy;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: var(--font-main);
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            overflow-x: hidden;
+            background-image:
+                radial-gradient(circle, var(--primary) 1px, transparent 1px),
+                radial-gradient(circle, var(--secondary) 1px, transparent 1px),
+                radial-gradient(circle, var(--accent) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: bgMove 30s linear infinite;
+        }
+
+        @keyframes bgMove {
+            0% { background-position: 0 0, 10px 10px, 20px 20px; }
+            100% { background-position: 50px 50px, 60px 60px, 70px 70px; }
+        }
+
+        .theme-1 {
+            --bg-color: #000;
+            --text-color: #0f0;
+            --primary: #f0f;
+            --secondary: #0ff;
+            --accent: #ff0;
+        }
+
+        .theme-2 {
+            --bg-color: #111;
+            --text-color: #ff00ff;
+            --primary: #00ffff;
+            --secondary: #ffff00;
+            --accent: #ff00ff;
+            background-image:
+                linear-gradient(45deg, #111 25%, transparent 25%),
+                linear-gradient(-45deg, #111 25%, transparent 25%),
+                linear-gradient(45deg, transparent 75%, #111 75%),
+                linear-gradient(-45deg, transparent 75%, #111 75%);
+            background-size: 20px 20px;
+        }
+
+        .theme-3 {
+            --bg-color: #000;
+            --text-color: #fff;
+            --primary: #ff0000;
+            --secondary: #00ff00;
+            --accent: #0000ff;
+            background-image:
+                url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="50" height="50" x="0" y="0" fill="%23ff0000"/><rect width="50" height="50" x="50" y="0" fill="%2300ff00"/><rect width="50" height="50" x="0" y="50" fill="%230000ff"/><rect width="50" height="50" x="50" y="50" fill="%23ffff00"/></svg>');
+            background-size: 50px 50px;
+        }
+
+        .theme-4 {
+            --bg-color: #fff;
+            --text-color: #000;
+            --primary: #ff00ff;
+            --secondary: #00ffff;
+            --accent: #ffff00;
+            background-image:
+                url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" stroke="%23000" stroke-width="2" fill="%23ff00ff"/><circle cx="50" cy="50" r="30" stroke="%23000" stroke-width="2" fill="%2300ffff"/><circle cx="50" cy="50" r="20" stroke="%23000" stroke-width="2" fill="%23ffff00"/></svg>');
+            background-size: 100px 100px;
+        }
+
+        .theme-selector {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 20px 0;
+            padding: 10px;
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 20px;
+        }
+
+        .theme-selector-btn {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: all 0.3s;
+        }
+
+        .theme-selector-btn:hover {
+            transform: scale(1.2);
+        }
+
+        .theme-selector-btn.active {
+            border-color: var(--text-color);
+            transform: scale(1.2);
+        }
+
+        .theme-selector-btn-1 { background: conic-gradient(#f0f, #0ff, #ff0, #f0f); }
+        .theme-selector-btn-2 { background: repeating-linear-gradient(45deg, #ff00ff, #00ffff 10px, #ffff00 20px); }
+        .theme-selector-btn-3 { background: radial-gradient(circle, #ff0000, #00ff00, #0000ff); }
+
+        header {
+            background: linear-gradient(45deg, var(--primary), var(--secondary), var(--accent), var(--primary));
+            padding: 3rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            border-bottom: 10px dashed var(--accent);
+            animation: headerGlow 5s ease infinite;
+        }
+
+        @keyframes headerGlow {
+            0%, 100% { filter: hue-rotate(0deg); }
+            50% { filter: hue-rotate(360deg); }
+        }
+
+        h1 {
+            font-family: var(--font-heading);
+            font-size: 4rem;
+            margin: 0;
+            color: var(--text-color);
+            text-shadow:
+                0 0 10px var(--primary),
+                0 0 20px var(--secondary),
+                0 0 30px var(--accent);
+            transform: rotate(-5deg);
+            animation:
+                float 3s ease-in-out infinite,
+                colorShift 7s linear infinite;
+            position: relative;
+            z-index: 2;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(-5deg); }
+            50% { transform: translateY(-20px) rotate(-8deg); }
+        }
+
+        @keyframes colorShift {
+            0% { color: var(--text-color); }
+            33% { color: var(--primary); }
+            66% { color: var(--secondary); }
+            100% { color: var(--text-color); }
+        }
+
+        .theme-switcher {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 100;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .theme-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 3px solid var(--text-color);
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 0 10px var(--primary);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        .theme-btn:hover {
+            transform: scale(1.2) rotate(180deg);
+            animation: none;
+        }
+
+        .theme-btn-1 { background: conic-gradient(#f0f, #0ff, #ff0, #f0f); }
+        .theme-btn-2 { background: repeating-linear-gradient(45deg, #ff00ff, #00ffff 10px, #ffff00 20px); }
+        .theme-btn-3 { background: radial-gradient(circle, #ff0000, #00ff00, #0000ff); }
+        .theme-btn-4 { background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40"><rect width="20" height="20" x="0" y="0" fill="%23ff00ff"/><rect width="20" height="20" x="20" y="0" fill="%2300ffff"/><rect width="20" height="20" x="0" y="20" fill="%23ffff00"/><rect width="20" height="20" x="20" y="20" fill="%23ff00ff"/></svg>'); }
+
+        nav {
+            background-color: transparent;
+            padding: 1rem;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            backdrop-filter: blur(10px);
+            border-bottom: 3px dotted var(--primary);
+        }
+
+        nav a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: bold;
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            background: rgba(0, 0, 0, 0.3);
+            border: 2px solid var(--secondary);
+            box-shadow: 0 0 10px var(--primary);
+        }
+
+        nav a:hover {
+            background: var(--accent);
+            color: var(--bg-color);
+            transform: translateY(-5px) rotate(5deg);
+            box-shadow: 0 0 20px var(--accent);
+            border-color: var(--primary);
+        }
+
+        nav a::before {
+            content: '✦';
+            position: absolute;
+            left: -20px;
+            transition: all 0.3s;
+            opacity: 0;
+        }
+
+        nav a:hover::before {
+            left: 10px;
+            opacity: 1;
+        }
+
+        nav a::after {
+            content: '✦';
+            position: absolute;
+            right: -20px;
+            transition: all 0.3s;
+            opacity: 0;
+        }
+
+        nav a:hover::after {
+            right: 10px;
+            opacity: 1;
+        }
+
+        main {
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        main::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                linear-gradient(90deg, var(--primary) 0%, transparent 50%),
+                linear-gradient(180deg, var(--secondary) 0%, transparent 50%),
+                linear-gradient(270deg, var(--accent) 0%, transparent 50%);
+            opacity: 0.1;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        section {
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 30px;
+            box-shadow:
+                0 0 20px var(--primary),
+                inset 0 0 20px var(--secondary);
+            position: relative;
+            overflow: hidden;
+            border: 3px solid var(--accent);
+            transition: all 0.5s;
+        }
+
+        section:hover {
+            transform: perspective(500px) rotateX(5deg) rotateY(5deg);
+            box-shadow:
+                0 0 40px var(--primary),
+                inset 0 0 40px var(--secondary);
+        }
+
+        section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            right: -50%;
+            bottom: -50%;
+            background: linear-gradient(45deg, transparent, var(--primary), transparent, var(--secondary), transparent, var(--accent), transparent);
+            z-index: -1;
+            animation: shine 5s linear infinite;
+            opacity: 0.3;
+        }
+
+        @keyframes shine {
+            0% { transform: rotate(0deg) translateX(-100%); }
+            100% { transform: rotate(360deg) translateX(100%); }
+        }
+
+        h2 {
+            font-family: var(--font-heading);
+            color: var(--primary);
+            font-size: 3rem;
+            margin-top: 0;
+            position: relative;
+            display: inline-block;
+            text-shadow: 0 0 10px var(--secondary);
+            letter-spacing: 3px;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
+            border-radius: 5px;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .skill {
+            background: linear-gradient(45deg, var(--secondary), var(--primary));
+            color: var(--bg-color);
+            padding: 1.5rem;
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.3s;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            font-size: 1.2rem;
+            font-weight: bold;
+            border: 2px solid var(--accent);
+            box-shadow: 0 0 15px var(--primary);
+        }
+
+        .skill:hover {
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 0 30px var(--accent);
+            z-index: 2;
+        }
+
+        .skill::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.5), transparent);
+            transform: translateX(-100%);
+            transition: 0.5s;
+        }
+
+        .skill:hover::before {
+            transform: translateX(100%);
+        }
+
+        .projects-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 3rem;
+        }
+
+        .project {
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.5s;
+            box-shadow: 0 0 20px var(--primary);
+            position: relative;
+            border: 3px solid var(--secondary);
+        }
+
+        .project:hover {
+            transform: perspective(1000px) rotateX(10deg) rotateY(10deg) scale(1.05);
+            box-shadow: 0 0 50px var(--accent);
+        }
+
+        .project-img {
+            height: 250px;
+            background: linear-gradient(45deg, var(--primary), var(--secondary), var(--accent));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5rem;
+            color: var(--bg-color);
+            text-shadow: 0 0 10px var(--text-color);
+            animation: projectImgGlow 3s ease infinite;
+        }
+
+        @keyframes projectImgGlow {
+            0%, 100% { filter: brightness(1); }
+            50% { filter: brightness(1.3); }
+        }
+
+        .project-info {
+            padding: 2rem;
+            background: rgba(0, 0, 0, 0.7);
+        }
+
+        .project h3 {
+            margin-top: 0;
+            color: var(--accent);
+            font-size: 1.8rem;
+            text-shadow: 0 0 5px var(--primary);
+        }
+
+        .project p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .project-links a {
+            color: var(--bg-color);
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            padding: 0.7rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: all 0.3s;
+            font-weight: bold;
+            border: 2px solid var(--accent);
+        }
+
+        .project-links a:hover {
+            background: linear-gradient(45deg, var(--accent), var(--primary));
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px var(--secondary);
+        }
+
+        .contact-form {
+            display: grid;
+            gap: 2rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+            color: var(--accent);
+            font-size: 1.2rem;
+            text-shadow: 0 0 5px var(--primary);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            padding: 1rem;
+            border: 3px solid var(--primary);
+            border-radius: 10px;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: var(--text-color);
+            font-family: var(--font-main);
+            transition: all 0.3s;
+            font-size: 1.1rem;
+            box-shadow: inset 0 0 10px var(--secondary);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow:
+                inset 0 0 15px var(--primary),
+                0 0 20px var(--secondary);
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+
+        .submit-btn {
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            color: var(--bg-color);
+            border: none;
+            padding: 1.2rem;
+            border-radius: 50px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            box-shadow: 0 0 20px var(--primary);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .submit-btn:hover {
+            background: linear-gradient(45deg, var(--accent), var(--primary));
+            transform: translateY(-5px);
+            box-shadow: 0 5px 30px var(--accent);
+        }
+
+        .submit-btn::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            right: -50%;
+            bottom: -50%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transform: rotate(45deg) translate(-30%, -30%);
+            transition: 0.5s;
+        }
+
+        .submit-btn:hover::before {
+            transform: rotate(45deg) translate(30%, 30%);
+        }
+
+        footer {
+            background: linear-gradient(45deg, var(--primary), var(--secondary), var(--accent));
+            color: var(--bg-color);
+            text-align: center;
+            padding: 3rem;
+            margin-top: 3rem;
+            position: relative;
+            overflow: hidden;
+            font-size: 1.2rem;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" stroke="%23000" stroke-width="1" fill="none"/><circle cx="50" cy="50" r="30" stroke="%23000" stroke-width="1" fill="none"/><circle cx="50" cy="50" r="20" stroke="%23000" stroke-width="1" fill="none"/></svg>');
+            background-size: 100px 100px;
+            opacity: 0.2;
+        }
+
+        footer p {
+            position: relative;
+            z-index: 2;
+            font-size: 1.5rem;
+            text-shadow: 0 0 10px var(--text-color);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .social-link {
+            color: var(--bg-color);
+            font-size: 2rem;
+            transition: all 0.3s;
+            text-shadow: 0 0 10px var(--text-color);
+            background: rgba(0, 0, 0, 0.3);
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            border: 2px solid var(--bg-color);
+        }
+
+        .social-link:hover {
+            color: var(--accent);
+            transform: scale(1.2) rotate(360deg);
+            background: rgba(0, 0, 0, 0.7);
+            box-shadow: 0 0 20px var(--accent);
+        }
+
+        .cursor-trail {
+            position: fixed;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: radial-gradient(circle, var(--primary), transparent 70%);
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+            mix-blend-mode: screen;
+            z-index: 9999;
+            opacity: 0.7;
+            filter: blur(5px);
+        }
+
+        .profile-image {
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            border: 10px solid var(--accent);
+            object-fit: cover;
+            margin: 0 auto;
+            display: block;
+            box-shadow:
+                0 0 30px var(--primary),
+                inset 0 0 30px var(--secondary);
+            transition: all 0.5s;
+            filter: sepia(1) hue-rotate(90deg);
+        }
+
+        .profile-image:hover {
+            transform: rotate(10deg) scale(1.1);
+            border-color: var(--primary);
+            filter: sepia(0) hue-rotate(0deg);
+            box-shadow:
+                0 0 50px var(--accent),
+                inset 0 0 50px var(--primary);
+        }
+
+        .about-text {
+            font-size: 1.3rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .about-text::first-letter {
+            font-size: 3rem;
+            color: var(--primary);
+            float: left;
+            margin-right: 10px;
+            line-height: 1;
+            text-shadow: 0 0 10px var(--secondary);
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: linear-gradient(45deg, var(--secondary), var(--primary));
+            color: var(--bg-color);
+            border-radius: 50px;
+            font-size: 0.9rem;
+            margin-right: 0.7rem;
+            margin-bottom: 0.7rem;
+            border: 1px solid var(--accent);
+            box-shadow: 0 0 10px var(--primary);
+            transition: all 0.3s;
+        }
+
+        .tag:hover {
+            transform: translateY(-5px) rotate(5deg);
+            box-shadow: 0 5px 15px var(--accent);
+        }
+
+        .floating-shapes {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            pointer-events: none;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .shape {
+            position: absolute;
+            opacity: 0.3;
+            animation: floatShape 15s infinite linear;
+        }
+
+        @keyframes floatShape {
+            0% { transform: translateY(0) rotate(0deg); }
+            100% { transform: translateY(-1000px) rotate(720deg); }
+        }
+
+        .shape:nth-child(1) {
+            width: 100px;
+            height: 100px;
+            background: var(--primary);
+            border-radius: 50%;
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .shape:nth-child(2) {
+            width: 150px;
+            height: 150px;
+            background: var(--secondary);
+            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+            top: 60%;
+            left: 70%;
+            animation-delay: 2s;
+            animation-duration: 20s;
+        }
+
+        .shape:nth-child(3) {
+            width: 80px;
+            height: 80px;
+            background: var(--accent);
+            clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+            top: 30%;
+            left: 50%;
+            animation-delay: 4s;
+            animation-duration: 25s;
+        }
+
+        .shape:nth-child(4) {
+            width: 120px;
+            height: 120px;
+            background: var(--primary);
+            border-radius: 20px;
+            top: 80%;
+            left: 30%;
+            animation-delay: 6s;
+            animation-duration: 18s;
+        }
+
+        .shape:nth-child(5) {
+            width: 90px;
+            height: 90px;
+            background: var(--secondary);
+            clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);
+            top: 40%;
+            left: 80%;
+            animation-delay: 8s;
+            animation-duration: 22s;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            nav {
+                gap: 1rem;
+            }
+
+            nav a {
+                padding: 0.5rem 1rem;
+                font-size: 1rem;
+            }
+
+            .skills-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
+
+            .projects-container {
+                grid-template-columns: 1fr;
+            }
+
+            .profile-image {
+                width: 180px;
+                height: 180px;
+            }
+
+            .theme-btn {
+                width: 30px;
+                height: 30px;
+            }
+        }
+
+        .matrix-rain {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: -2;
+            opacity: 0.1;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body class="theme-1">
+    <div class="cursor-trail"></div>
+    <div class="floating-shapes">
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+    </div>
+    <div class="theme-switcher">
+        <div class="theme-btn theme-btn-1" onclick="changeTheme('theme-1')"></div>
+        <div class="theme-btn theme-btn-2" onclick="changeTheme('theme-2')"></div>
+        <div class="theme-btn theme-btn-3" onclick="changeTheme('theme-3')"></div>
+        <div class="theme-btn theme-btn-4" onclick="changeTheme('theme-4')"></div>
+    </div>
+
+    <header>
+        <h1>GDev | Эмин Аскеров</h1>
+    </header>
+
+    <div class="theme-selector">
+        <div class="theme-selector-btn theme-selector-btn-1" onclick="window.location.href='index.html'"></div>
+        <div class="theme-selector-btn theme-selector-btn-2" onclick="window.location.href='gen-theme-2.html'"></div>
+        <div class="theme-selector-btn theme-selector-btn-3 active" onclick="window.location.href='gen-theme-3.html'"></div>
+    </div>
+
+    <nav>
+        <a href="#about">Обо мне</a>
+        <a href="#skills">Навыки</a>
+        <a href="#projects">Проекты</a>
+        <a href="#contact">Контакты</a>
+    </nav>
+
+    <main>
+        <section id="about">
+            <div style="text-align: center; margin-bottom: 2rem;">
+                <img src="/img/gdev.jpg" alt="Эмин Аскеров" class="profile-image">
+                <h2 style="margin-top: 1rem;">Fullstack Разработчик</h2>
+            </div>
+            <div class="about-text">
+                <p>Привет! Я Эмин, профессиональный разработчик с 3x-летним опытом создания веб-приложений, программ и minecraft плагинов.</p>
+                <p>Специализируюсь на полном цикле разработки - от проектирования архитектуры до развертывания готового продукта. Люблю решать сложные задачи и создавать элегантные решения.</p>
+                <p>В свободное время изучаю open-source проекты, новые технологии и делюсь знаниями с сообществом.</p>
+            </div>
+        </section>
+
+        <section id="skills">
+            <h2>Навыки</h2>
+            <div class="skills-grid">
+                <div class="skill">C# / .NET</div>
+                <div class="skill">JavaScript</div>
+                <div class="skill">TypeScript</div>
+                <div class="skill">Python</div>
+                <div class="skill">Go</div>
+                <div class="skill">HTML5</div>
+                <div class="skill">CSS3</div>
+                <div class="skill">React</div>
+                <div class="skill">Vue.js</div>
+                <div class="skill">Node.js</div>
+                <div class="skill">PHP</div>
+                <div class="skill">Photoshop</div>
+                <div class="skill">PremierPRO</div>
+                <div class="skill">Figma</div>
+                <div class="skill">CapCut</div>
+                <div class="skill">Blockbench</div>
+            </div>
+        </section>
+
+        <section id="projects">
+            <h2>Проекты</h2>
+            <div class="projects-container">
+                <div class="project">
+                    <div class="project-img">🎮</div>
+                    <div class="project-info">
+                        <h3>SeeRTP</h3>
+                        <p>Продвинутый плагин на рандомную телепортацию с гибкой конфигурацией и своим GUI интерфейсом имеющий полную настройку.</p>
+                        <div>
+                            <span class="tag">JavaScript</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="apl/SeeRTP-3.21.5-stable_latest.jar">Скачать</a>
+                            <a href="https://github.com/EminGame5392/SeeRTP" target="_blank">GitHub</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="project">
+                    <div class="project-img">⛏️</div>
+                    <div class="project-info">
+                        <h3>SeeMine</h3>
+                        <p>Minecraft сервер LiteAnarchy с кастомными ивентами, функциями и самописными плагинами.</p>
+                        <div>
+                            <span class="tag">PurPur</span>
+                            <span class="tag">Velocity</span>
+                            <span class="tag">Java</span>
+                            <span class="tag">JavaScript</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://seemine.su" target="_blank">Сайт</a>
+                            <a href="https://info.seemine.su" target="_blank">Подробнее</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact">
+            <h2>Контакты</h2>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem;">
+                <div>
+                    <h3 style="font-family: var(--font-heading); color: var(--accent); margin-bottom: 1.5rem; text-shadow: 0 0 10px var(--primary);">Социальные сети</h3>
+                    <div style="display: grid; gap: 1.5rem;">
+                        <a href="https://GDevPM.t.me" target="_blank" style="display: flex; align-items: center; gap: 1.5rem; color: var(--text-color); text-decoration: none; padding: 1.2rem; background: rgba(0, 0, 0, 0.5); border-radius: 15px; transition: all 0.3s; border: 2px solid var(--primary); box-shadow: 0 0 15px var(--secondary);">
+                            <i class="fab fa-telegram" style="font-size: 2rem; color: var(--primary); text-shadow: 0 0 10px var(--secondary);"></i>
+                            <span style="font-size: 1.2rem;">Telegram</span>
+                        </a>
+                        <a href="https://vk.com/gortex1337" target="_blank" style="display: flex; align-items: center; gap: 1.5rem; color: var(--text-color); text-decoration: none; padding: 1.2rem; background: rgba(0, 0, 0, 0.5); border-radius: 15px; transition: all 0.3s; border: 2px solid var(--secondary); box-shadow: 0 0 15px var(--primary);">
+                            <i class="fab fa-vk" style="font-size: 2rem; color: var(--secondary); text-shadow: 0 0 10px var(--primary);"></i>
+                            <span style="font-size: 1.2rem;">ВКонтакте</span>
+                        </a>
+                        <a href="https://discord.com/users/793491294285725696" target="_blank" style="display: flex; align-items: center; gap: 1.5rem; color: var(--text-color); text-decoration: none; padding: 1.2rem; background: rgba(0, 0, 0, 0.5); border-radius: 15px; transition: all 0.3s; border: 2px solid var(--accent); box-shadow: 0 0 15px var(--primary);">
+                            <i class="fab fa-discord" style="font-size: 2rem; color: var(--accent); text-shadow: 0 0 10px var(--primary);"></i>
+                            <span style="font-size: 1.2rem;">Discord</span>
+                        </a>
+                        <a href="https://steamcommunity.com/id/GorTEx1747" target="_blank" style="display: flex; align-items: center; gap: 1.5rem; color: var(--text-color); text-decoration: none; padding: 1.2rem; background: rgba(0, 0, 0, 0.5); border-radius: 15px; transition: all 0.3s; border: 2px solid var(--primary); box-shadow: 0 0 15px var(--accent);">
+                            <i class="fab fa-steam" style="font-size: 2rem; color: var(--primary); text-shadow: 0 0 10px var(--accent);"></i>
+                            <span style="font-size: 1.2rem;">Steam</span>
+                        </a>
+                        <a href="https://github.com/EminGame5392" target="_blank" style="display: flex; align-items: center; gap: 1.5rem; color: var(--text-color); text-decoration: none; padding: 1.2rem; background: rgba(0, 0, 0, 0.5); border-radius: 15px; transition: all 0.3s; border: 2px solid var(--secondary); box-shadow: 0 0 15px var(--accent);">
+                            <i class="fab fa-github" style="font-size: 2rem; color: var(--secondary); text-shadow: 0 0 10px var(--accent);"></i>
+                            <span style="font-size: 1.2rem;">GitHub</span>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h3 style="font-family: var(--font-heading); color: var(--accent); margin-bottom: 1.5rem; text-shadow: 0 0 10px var(--primary);">Написать мне (временно отключено)</h3>
+                    <form class="contact-form">
+                        <div class="form-group">
+                            <label for="name">Ваше имя</label>
+                            <input type="text" id="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Сообщение</label>
+                            <textarea id="message" rows="4" required></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">Отправить</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2025 GDev. Все права странные.</p>
+        <div class="social-links">
+            <a href="https://GDevPM.t.me" target="_blank" class="social-link"><i class="fab fa-telegram"></i></a>
+            <a href="https://vk.com/gortex1337" target="_blank" class="social-link"><i class="fab fa-vk"></i></a>
+            <a href="https://discord.com/users/793491294285725696" target="_blank" class="social-link"><i class="fab fa-discord"></i></a>
+            <a href="https://steamcommunity.com/id/GorTEx1747" target="_blank" class="social-link"><i class="fab fa-steam"></i></a>
+            <a href="https://github.com/EminGame5392" target="_blank" class="social-link"><i class="fab fa-github"></i></a>
+        </div>
+    </footer>
+
+    <canvas id="matrix-rain" class="matrix-rain"></canvas>
+
+    <script>
+        function changeTheme(themeName) {
+            document.body.className = themeName;
+            document.querySelectorAll('.shape').forEach((shape, i) => {
+                shape.style.background = i % 2 === 0 ? `var(--${i % 3 === 0 ? 'primary' : 'secondary'})` : `var(--accent)`;
+            });
+            localStorage.setItem('selectedTheme', themeName);
+        }
+
+        const savedTheme = localStorage.getItem('selectedTheme') || 'theme-1';
+        document.body.className = savedTheme;
+
+        const cursorTrails = [];
+        const trailCount = 15;
+
+        for (let i = 0; i < trailCount; i++) {
+            const trail = document.createElement('div');
+            trail.className = 'cursor-trail';
+            trail.style.width = `${30 - i}px`;
+            trail.style.height = `${30 - i}px`;
+            trail.style.opacity = `${0.7 - (i * 0.05)}`;
+            trail.style.filter = `blur(${5 - (i * 0.3)}px)`;
+            trail.style.background = `radial-gradient(circle, var(--${i % 2 === 0 ? 'primary' : 'secondary'}), transparent 70%)`;
+            document.body.appendChild(trail);
+            cursorTrails.push(trail);
+        }
+
+        document.addEventListener('mousemove', (e) => {
+            const x = e.clientX;
+            const y = e.clientY;
+
+            cursorTrails.forEach((trail, index) => {
+                setTimeout(() => {
+                    trail.style.left = `${x}px`;
+                    trail.style.top = `${y}px`;
+                }, index * 30);
+            });
+        });
+
+        const skills = document.querySelectorAll('.skill');
+        skills.forEach(skill => {
+            skill.addEventListener('click', () => {
+                skill.style.transform = 'scale(1.2) rotate(10deg)';
+                skill.style.boxShadow = '0 0 40px var(--accent)';
+                skill.style.background = 'linear-gradient(45deg, var(--accent), var(--primary))';
+
+                setTimeout(() => {
+                    skill.style.transform = '';
+                    skill.style.boxShadow = '0 0 15px var(--primary)';
+                    skill.style.background = 'linear-gradient(45deg, var(--secondary), var(--primary))';
+                }, 1000);
+            });
+        });
+
+        const projectImgs = document.querySelectorAll('.project-img');
+        projectImgs.forEach(img => {
+            img.addEventListener('mouseenter', () => {
+                const emojis = ['🎮', '⛏️', '👾', '🕹️', '🎲', '🎯', '🧩', '🔮', '💻', '👨‍💻', '🚀', '🎨', '🌈', '🔥'];
+                const randomEmoji = emojis[Math.floor(Math.random() * emojis.length)];
+                img.textContent = randomEmoji;
+                img.style.fontSize = `${Math.random() * 3 + 5}rem`;
+            });
+        });
+
+        const form = document.querySelector('.contact-form');
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const submitBtn = document.querySelector('.submit-btn');
+            submitBtn.textContent = 'Сообщение отправлено! 🚀';
+            submitBtn.style.background = 'linear-gradient(45deg, var(--secondary), var(--accent))';
+
+            for (let i = 0; i < 50; i++) {
+                const confetti = document.createElement('div');
+                confetti.style.position = 'absolute';
+                confetti.style.width = '10px';
+                confetti.style.height = '10px';
+                confetti.style.background = `var(--${i % 3 === 0 ? 'primary' : i % 3 === 1 ? 'secondary' : 'accent'})`;
+                confetti.style.borderRadius = '50%';
+                confetti.style.left = `${Math.random() * 100}%`;
+                confetti.style.top = '0';
+                confetti.style.zIndex = '1000';
+                confetti.style.pointerEvents = 'none';
+                document.body.appendChild(confetti);
+
+                const angle = Math.random() * Math.PI * 2;
+                const velocity = 5 + Math.random() * 5;
+                const x = velocity * Math.cos(angle);
+                const y = velocity * Math.sin(angle);
+
+                let posX = submitBtn.getBoundingClientRect().left + submitBtn.offsetWidth / 2;
+                let posY = submitBtn.getBoundingClientRect().top + submitBtn.offsetHeight / 2;
+
+                const animate = () => {
+                    posX += x;
+                    posY += y + 0.5;
+                    confetti.style.left = `${posX}px`;
+                    confetti.style.top = `${posY}px`;
+                    confetti.style.opacity = 1 - (posY / window.innerHeight);
+
+                    if (posY < window.innerHeight) {
+                        requestAnimationFrame(animate);
+                    } else {
+                        confetti.remove();
+                    }
+                };
+
+                animate();
+            }
+
+            setTimeout(() => {
+                submitBtn.textContent = 'Отправить';
+                submitBtn.style.background = 'linear-gradient(45deg, var(--primary), var(--secondary))';
+                form.reset();
+            }, 3000);
+        });
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        const canvas = document.getElementById('matrix-rain');
+        const ctx = canvas.getContext('2d');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const chars = "01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン";
+        const fontSize = 14;
+        const columns = canvas.width / fontSize;
+
+        const drops = [];
+        for (let i = 0; i < columns; i++) {
+            drops[i] = 1;
+        }
+
+        function drawMatrix() {
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--primary');
+            ctx.font = `${fontSize}px monospace`;
+
+            for (let i = 0; i < drops.length; i++) {
+                const text = chars[Math.floor(Math.random() * chars.length)];
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                    drops[i] = 0;
+                }
+
+                drops[i]++;
+            }
+        }
+
+        setInterval(drawMatrix, 33);
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+
+        const shapes = document.querySelectorAll('.shape');
+        shapes.forEach((shape, i) => {
+            shape.style.left = `${Math.random() * 90}%`;
+            shape.style.top = `${Math.random() * 90}%`;
+            shape.style.animationDuration = `${15 + Math.random() * 15}s`;
+            shape.style.animationDelay = `${Math.random() * 5}s`;
+            shape.style.background = `var(--${i % 3 === 0 ? 'primary' : i % 3 === 1 ? 'secondary' : 'accent'})`;
+        });
+
+        setInterval(() => {
+            document.querySelectorAll('h1, h2, h3').forEach(heading => {
+                heading.style.color = `hsl(${Math.random() * 360}, 100%, 70%)`;
+            });
+        }, 3000);
+
+        const currentPage = window.location.pathname.split('/').pop();
+        const themeBtns = document.querySelectorAll('.theme-selector-btn');
+        themeBtns.forEach(btn => {
+            if ((currentPage === 'index.html' && btn.classList.contains('theme-selector-btn-1')) ||
+                (currentPage === 'gen-theme-2.html' && btn.classList.contains('theme-selector-btn-2')) ||
+                (currentPage === 'gen-theme-3.html' && btn.classList.contains('theme-selector-btn-3'))) {
+                btn.classList.add('active');
+            } else {
+                btn.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html>
